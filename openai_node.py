@@ -6,7 +6,10 @@ class OpenAINode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "prompt": ("TEXT", ),
+                "prompt": ("STRING", {
+                    "multiline": False,
+                    "default": ""
+                }),
                 "api_url": ("STRING", {
                     "multiline": False,
                     "default": "https://api.deepseek.com/v1"
