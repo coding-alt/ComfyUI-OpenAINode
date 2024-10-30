@@ -6,17 +6,18 @@ class OpenAINode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "prompt": ("STRING", {
-                    "multiline": True,
-                    "default": "A world without prompts"
-                }),
+                "prompt": ("TEXT", ),
                 "api_url": ("STRING", {
                     "multiline": False,
-                    "default": "http://127.0.0.1:5000/v1"
+                    "default": "https://api.deepseek.com/v1"
                 }),
                 "api_key": ("STRING", {
                     "multiline": False,
                     "default": "BadPanda"
+                }),
+                "model": ("STRING", {
+                    "multiline": False,
+                    "default": "deepseek-chat"
                 }),
                 "temperature": ("FLOAT", {
                     "default": 1.0,
@@ -54,7 +55,7 @@ class OpenAINode:
 
     CATEGORY = "OpenAIapi"
 
-    def get_completion(self, prompt, api_url, api_key, temperature, sys_prefix, stop_token, max_tokens, seed, model="local model"):
+    def get_completion(self, prompt, api_url, api_key, temperature, sys_prefix, stop_token, max_tokens, seed, model):
         try:
             openai.api_base = api_url
             openai.api_key = api_key
